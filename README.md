@@ -36,6 +36,7 @@ dependencies{
 - [FirestoreRequestBody](/#FirestoreRequestBody)
 - [FirestoreRequestBodyBuilder](/#FirestoreRequestBodyBuilder)
 - [MapForm](/#MapForm)
+- [FirestoreListener](/#FirestoreListener)
 
 ## FirestoreRequest
 - [findAll()](/#FindAll)
@@ -82,6 +83,21 @@ FirestoreRequestBody body = new FirestoreRequestBody.FirestoreRequestBodyBuilder
 ```java
 FirestoreRequestBody body = new FirestoreRequestBody();
 Map<String,Object> params = MapForm.convertObjectToMap(body); // convert data model to Map<String,Object>
+```
+
+## FirestoreListener
+```java
+FirestoreListener listener = new FirestoreListener(){
+        @Override
+        public<T> void onSuccess(T any){
+            // do something
+        }
+        
+        @Override
+        public void onError(Error error){
+              // do something
+        }
+};
 ```
 
 
