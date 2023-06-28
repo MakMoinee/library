@@ -38,7 +38,7 @@ dependencies{
 - MapForm
 
 ## FirestoreRequest
-- findAll()(https://github.com/MakMoinee/library/#FindAll)
+- findAll()(#FindAll)
 
 
 ## FindAll
