@@ -1,4 +1,4 @@
-package com.github.MakMoinee.library;
+package com.github.MakMoinee.library.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.github.MakMoinee.library.common.MapForm;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
