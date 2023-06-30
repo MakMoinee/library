@@ -25,7 +25,7 @@ public class FirestoreRequest {
         CollectionReference collectionReference = fs.collection(body.getCollectionName());
         Query query = null;
         if (body.getWhereFromField() != null && body.getWhereValueField() != null) {
-            query = query.whereEqualTo(body.getWhereFromField(), body.getWhereValueField());
+            query = collectionReference.whereEqualTo(body.getWhereFromField(), body.getWhereValueField());
         } else {
             if (body.getDocumentID() != null) {
                 collectionReference.document(body.getDocumentID())
