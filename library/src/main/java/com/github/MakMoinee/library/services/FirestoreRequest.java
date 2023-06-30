@@ -13,6 +13,10 @@ public class FirestoreRequest {
 
     FirebaseFirestore fs;
 
+    public FirestoreRequest() {
+        fs = FirebaseFirestore.getInstance();
+    }
+
     /**
      * @param body     - pass the FirebaseRequestBody
      * @param listener - handle results using FirebaseListener
