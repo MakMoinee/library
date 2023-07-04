@@ -26,6 +26,11 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
+    packagingOptions {
+        exclude 'META-INF/NOTICE.md'
+        exclude 'META-INF/LICENSE.md'
+    }
+
     publishing {
         multipleVariants {
             withSourcesJar()
@@ -62,7 +67,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.5'
+                version '1.0.6'
 
                 artifact bundleReleaseAar
             }
