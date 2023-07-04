@@ -46,10 +46,11 @@ dependencies {
 
     implementation 'com.android.volley:volley:1.2.1'
 
-    implementation files('libs/lombok.jar')
-    annotationProcessor files('libs/lombok.jar')
-    testImplementation files('libs/lombok.jar')
-    androidTestImplementation files('libs/lombok.jar')
+    implementation 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testImplementation 'org.projectlombok:lombok:1.18.28'
+    androidTestAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
     implementation files('libs/jackson-databind-2.15.2.jar')
     implementation files('libs/jackson-core-2.15.2.jar')
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -69,7 +70,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.7'
+                version '1.0.8'
 
                 artifact bundleReleaseAar
             }

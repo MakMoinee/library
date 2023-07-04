@@ -11,7 +11,7 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "1.0.7"
+        versionName "1.0.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,6 +30,7 @@ android {
     packagingOptions {
         exclude 'META-INF/NOTICE.md'
         exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/versions/9/module-info.class'
     }
 }
 
