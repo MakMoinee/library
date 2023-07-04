@@ -30,6 +30,7 @@ android {
         exclude 'META-INF/NOTICE.md'
         exclude 'META-INF/LICENSE.md'
         exclude 'META-INF/versions/9/module-info.class'
+        exclude 'module-info.class'
     }
 
 
@@ -70,7 +71,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.9'
+                version '1.0.10'
 
                 artifact bundleReleaseAar
             }
