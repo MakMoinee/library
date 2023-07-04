@@ -51,8 +51,8 @@ dependencies {
     testImplementation 'org.projectlombok:lombok:1.18.28'
     androidTestAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 
-    implementation files('libs/jackson-databind-2.15.2.jar')
-    implementation files('libs/jackson-core-2.15.2.jar')
+    implementation files('libs/jackson-databind-2.11.1.jar')
+    implementation files('libs/jackson-core-2.11.1.jar')
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     testImplementation 'junit:junit:4.13.2'
@@ -70,7 +70,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.8'
+                version '1.0.9'
 
                 artifact bundleReleaseAar
             }
