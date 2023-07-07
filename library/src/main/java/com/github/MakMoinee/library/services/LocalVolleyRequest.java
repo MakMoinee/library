@@ -1,10 +1,12 @@
 package com.github.MakMoinee.library.services;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.MakMoinee.library.interfaces.LocalVolleyRequestListener;
@@ -37,5 +39,43 @@ public class LocalVolleyRequest {
 
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(jsonObjectRequest);
+    }
+
+    public void sendJSONPostGetRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, body.getUrl(), body.getBody(), response -> {
+            if (response.length() > 0) {
+                listener.onSuccessJSON(response);
+            } else {
+                listener.onError(new Error("empty response"));
+            }
+        }, error -> {
+            try {
+                listener.onError(new Error(error.getLocalizedMessage()));
+            } catch (Exception e) {
+                listener.onError(new Error("empty error, please check internet connectivity"));
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(objectRequest);
+    }
+
+    public void sendJSONPutRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, body.getUrl(), body.getBody(), response -> {
+            if (response.length() > 0) {
+                listener.onSuccessJSON(response);
+            } else {
+                listener.onError(new Error("empty response"));
+            }
+        }, error -> {
+            try {
+                listener.onError(new Error(error.getLocalizedMessage()));
+            } catch (Exception e) {
+                listener.onError(new Error("empty error, please check internet connectivity"));
+            }
+        });
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(objectRequest);
     }
 }
