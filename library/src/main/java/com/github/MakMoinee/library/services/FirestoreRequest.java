@@ -97,10 +97,12 @@ public class FirestoreRequest {
 
             @Override
             public void onError(Error error) {
+                String id = fs.collection(body.getCollectionName())
+                        .document().getId();
                 fs.collection(body.getCollectionName())
-                        .document()
+                        .document(id)
                         .set(body.getParams())
-                        .addOnSuccessListener(unused -> listener.onSuccess(null))
+                        .addOnSuccessListener(unused -> listener.onSuccess(id))
                         .addOnFailureListener(e -> {
                             try {
                                 listener.onError(new Error(e.getMessage()));
