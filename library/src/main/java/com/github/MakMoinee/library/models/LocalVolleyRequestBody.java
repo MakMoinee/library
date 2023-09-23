@@ -2,12 +2,16 @@ package com.github.MakMoinee.library.models;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import lombok.Data;
 
 @Data
 public class LocalVolleyRequestBody {
     private String url;
     private JSONObject body;
+
+    private Map<String,Object> bodyMap;
 
     public LocalVolleyRequestBody() {
 
@@ -16,11 +20,14 @@ public class LocalVolleyRequestBody {
     public LocalVolleyRequestBody(LocalVolleyRequestBodyBuilder builder) {
         this.url = builder.url;
         this.body = builder.body;
+        this.bodyMap = builder.bodyMap;
     }
 
     public static class LocalVolleyRequestBodyBuilder {
         private String url;
         private JSONObject body;
+
+        private Map<String,Object> bodyMap;
 
         public LocalVolleyRequestBodyBuilder() {
         }
@@ -32,6 +39,11 @@ public class LocalVolleyRequestBody {
 
         public LocalVolleyRequestBodyBuilder setBody(JSONObject body) {
             this.body = body;
+            return this;
+        }
+
+        public LocalVolleyRequestBodyBuilder setBodyMap(Map<String,Object> body) {
+            this.bodyMap = body;
             return this;
         }
 

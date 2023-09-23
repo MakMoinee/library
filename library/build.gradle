@@ -31,6 +31,16 @@ android {
         exclude 'META-INF/LICENSE.md'
         exclude 'META-INF/versions/9/module-info.class'
         exclude 'module-info.class'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
     }
 
 
@@ -52,6 +62,7 @@ dependencies {
     testImplementation 'org.projectlombok:lombok:1.18.28'
     androidTestImplementation 'org.projectlombok:lombok:1.18.28'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -70,7 +81,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.16'
+                version '1.0.17'
 
                 artifact bundleReleaseAar
             }

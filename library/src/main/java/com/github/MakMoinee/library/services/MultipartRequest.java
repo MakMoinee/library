@@ -1,94 +1,94 @@
 package com.github.MakMoinee.library.services;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
+import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
+
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.StringBody;
 
 import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-import java.util.HashMap;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class MultipartRequest extends StringRequest {
-    private String boundary;
-    private final String lineEnd = "\r\n";
-    private final String twoHyphens = "--";
+public class MultipartRequest extends Request<String> {
 
-    private final String jsonBody;
-    private final Map<String, String> headers;
+    private final String mBoundary;
+    private Response.Listener<String> mListener;
+    private Response.ErrorListener mErrorListener;
+    private final Map<String, Object> mParams;
 
-    public MultipartRequest(
-            int method,
-            String url,
-            String jsonBody,
-            Response.Listener<String> listener,
-            Response.ErrorListener errorListener) {
-        super(method, url, listener, errorListener);
-        this.jsonBody = jsonBody;
-        this.boundary = generateBoundary();
-        headers = new HashMap<>();
-        headers.put("Content-Type", "multipart/form-data;boundary=" + boundary);
+
+    public MultipartRequest(int method, String url, Map<String, Object> params, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+        super(method, url, errorListener);
+        this.mParams = params;
+        this.mListener = listener;
+        this.mErrorListener = errorListener;
+        this.mBoundary = "-" + System.currentTimeMillis();
     }
 
     @Override
-    public Map<String, String> getHeaders() throws AuthFailureError {
-        return headers;
-    }
-
-
-    private String generateBoundary() {
-        SecureRandom random = new SecureRandom();
-        byte[] bytes = new byte[32];
-        random.nextBytes(bytes);
-        return "----" + bytesToHex(bytes);
-    }
-
-    private String bytesToHex(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString();
-    }
-    @Override
-    public byte[] getBody() throws AuthFailureError {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        DataOutputStream dos = new DataOutputStream(bos);
-
-        try {
-            // Add JSON data as a part of the multipart request
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"json_data\"" + lineEnd);
-            dos.writeBytes("Content-Type: application/json" + lineEnd + lineEnd);
-            dos.write(jsonBody.getBytes("utf-8"));
-            dos.writeBytes(lineEnd);
-
-            // Add any additional parts here if needed
-
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-            return bos.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getBodyContentType() {
+        return "multipart/form-data;boundary=" + mBoundary;
     }
 
     @Override
     protected Response<String> parseNetworkResponse(NetworkResponse response) {
+        String s = new String(response.data, StandardCharsets.UTF_8);
+        return Response.success(s, HttpHeaderParser.parseCacheHeaders(response));
+    }
+
+    @Override
+    protected void deliverResponse(String response) {
+        this.mListener.onResponse(response);
+    }
+
+    @Override
+    public void deliverError(VolleyError error) {
+        this.mErrorListener.onErrorResponse(error);
+    }
+
+    @Override
+    public byte[] getBody() throws AuthFailureError {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            String jsonResponse = new String(response.data,
-                    HttpHeaderParser.parseCharset(response.headers));
-            return Response.success(jsonResponse,
-                    HttpHeaderParser.parseCacheHeaders(response));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return Response.error(new ParseError(e));
+            // Create multipart entity builder with the boundary and mode
+            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+            entityBuilder.setBoundary(mBoundary);
+            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+            // Add string params to the builder
+            for (Map.Entry<String, Object> entry : mParams.entrySet()) {
+                if (!(entry.getValue() instanceof byte[])) {
+                    entityBuilder.addPart(entry.getKey(),
+                            new StringBody(entry.getValue().toString(), ContentType.TEXT_PLAIN));
+                }
+            }
+
+            // Add binary params to the builder
+            for (Map.Entry<String, Object> entry : mParams.entrySet()) {
+                if (entry.getValue() instanceof byte[]) {
+                    entityBuilder.addPart(entry.getKey(),
+                            new ByteArrayBody((byte[]) entry.getValue(),
+                                    ContentType.IMAGE_JPEG,
+                                    "image.jpg"));
+                }
+            }
+
+            // Write the multipart entity content to the output stream
+            entityBuilder.build().writeTo(outputStream);
+        } catch (IOException e) {
+            throw new AuthFailureError("IOException writing to ByteArrayOutputStream", e);
         }
+
+        return outputStream.toByteArray();
     }
 }
+

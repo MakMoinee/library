@@ -1,12 +1,10 @@
 package com.github.MakMoinee.library.services;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.MakMoinee.library.interfaces.LocalVolleyRequestListener;
@@ -82,7 +80,7 @@ public class LocalVolleyRequest {
     public void sendMultipartJSONPostRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
         // Create a new request with the appropriate URL
         String url = body.getUrl();
-        MultipartRequest multipartRequest = new MultipartRequest(Request.Method.POST, url, body.getBody().toString(), response -> {
+        MultipartRequest multipartRequest = new MultipartRequest(Request.Method.POST, url, body.getBodyMap(), response -> {
             if (response.length() > 0) {
                 listener.onSuccessString(response);
             } else {
