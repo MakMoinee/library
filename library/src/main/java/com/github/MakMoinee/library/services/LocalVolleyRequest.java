@@ -78,4 +78,27 @@ public class LocalVolleyRequest {
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(objectRequest);
     }
+
+    public void sendMultipartJSONPostRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
+        // Create a new request with the appropriate URL
+        String url = body.getUrl();
+        MultipartRequest multipartRequest = new MultipartRequest(Request.Method.POST, url, body.getBody().toString(), response -> {
+            if (response.length() > 0) {
+                listener.onSuccessString(response);
+            } else {
+                listener.onError(new Error("empty response"));
+            }
+        }, error -> {
+            try {
+                listener.onError(new Error(error.getLocalizedMessage()));
+            } catch (Exception e) {
+                listener.onError(new Error("empty error, please check internet connectivity"));
+            }
+        });
+
+        // Create a RequestQueue and add the multipart request to it
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(multipartRequest);
+    }
+
 }
