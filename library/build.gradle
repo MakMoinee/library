@@ -5,6 +5,7 @@ plugins {
 
 android {
     namespace 'com.github.MakMoinee.library'
+    useLibrary 'org.apache.http.legacy'
     compileSdk 33
 
     defaultConfig {
