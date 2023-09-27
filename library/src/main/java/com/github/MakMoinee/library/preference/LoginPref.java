@@ -43,4 +43,10 @@ public class LoginPref {
     public Map<String, Object> getLogin() {
         return (Map<String, Object>) pref.getAll();
     }
+
+    public void clearLogin() {
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear(); // Remove all stored preferences
+        editor.apply();
+    }
 }
