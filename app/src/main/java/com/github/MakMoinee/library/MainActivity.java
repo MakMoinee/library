@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.MakMoinee.library.common.MapForm;
+import com.github.MakMoinee.library.interfaces.DefaultEventListener;
 import com.github.MakMoinee.library.interfaces.FirestoreListener;
 import com.github.MakMoinee.library.models.FirestoreRequestBody;
 import com.github.MakMoinee.library.services.FirestoreRequest;
@@ -30,5 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        DefaultEventListener listener = new DefaultEventListener() {
+            @Override
+            public void onClickListener() {
+
+            }
+        };
     }
 }
