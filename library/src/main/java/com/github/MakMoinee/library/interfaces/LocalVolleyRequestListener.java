@@ -1,5 +1,6 @@
 package com.github.MakMoinee.library.interfaces;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public interface LocalVolleyRequestListener {
@@ -14,6 +15,10 @@ public interface LocalVolleyRequestListener {
         /***
          * Default implementation
          */
+    }
+
+    default void onSuccessJSONArray(JSONArray array){
+
     }
 
     void onError(Error error);
