@@ -32,9 +32,9 @@ public class FirestoreRequest {
                         .get()
                         .addOnSuccessListener(documentSnapshot -> {
                             if (documentSnapshot.exists()) {
-                                listener.onError(new Error("empty result"));
-                            } else {
                                 listener.onSuccess(documentSnapshot);
+                            } else {
+                                listener.onError(new Error("empty result"));
                             }
                         })
                         .addOnFailureListener(e -> {
