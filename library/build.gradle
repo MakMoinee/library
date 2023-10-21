@@ -64,6 +64,8 @@ dependencies {
     androidTestImplementation 'org.projectlombok:lombok:1.18.28'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
     implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+    implementation 'com.google.zxing:core:3.3.2'
+    implementation 'com.google.zxing:javase:3.3.2'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
@@ -82,7 +84,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.23'
+                version '1.0.24'
 
                 artifact bundleReleaseAar
             }
