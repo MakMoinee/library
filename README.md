@@ -26,9 +26,22 @@ dependencyResolutionManagement{
 
 ```java
 dependencies{
+        //required dependencies
         implementation'com.github.MakMoinee:library:Tag'
+        implementation 'com.android.volley:volley:1.2.1'
+        implementation platform('com.google.firebase:firebase-bom:32.1.0')
+        implementation 'com.google.firebase:firebase-firestore'
+        implementation 'org.projectlombok:lombok:1.18.28'
+        annotationProcessor 'org.projectlombok:lombok:1.18.28'
+        testImplementation 'org.projectlombok:lombok:1.18.28'
+        androidTestImplementation 'org.projectlombok:lombok:1.18.28'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+        implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+        implementation 'com.google.zxing:core:3.3.2'
+        implementation 'com.google.zxing:javase:3.3.2'
 }
 ```
+
 
 ## Available Classes,Functions,Models,Interfaces:
 
