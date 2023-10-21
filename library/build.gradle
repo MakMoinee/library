@@ -8,6 +8,10 @@ android {
     useLibrary 'org.apache.http.legacy'
     compileSdk 33
 
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
     defaultConfig {
         minSdk 24
         targetSdk 33
@@ -57,8 +61,7 @@ android {
 dependencies {
 
     implementation 'com.android.volley:volley:1.2.1'
-    implementation platform('com.google.firebase:firebase-bom:32.1.0')
-    implementation 'com.google.firebase:firebase-firestore'
+
     implementation 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     testImplementation 'org.projectlombok:lombok:1.18.28'
@@ -74,7 +77,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    implementation 'com.google.firebase:firebase-firestore'
 }
 
 
@@ -84,7 +88,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.24'
+                version '1.0.25'
 
                 artifact bundleReleaseAar
             }
