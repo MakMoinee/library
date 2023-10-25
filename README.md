@@ -25,6 +25,11 @@ dependencyResolutionManagement{
 - You can get the tag from latest release number
 
 ```java
+android {
+        useLibrary 'org.apache.http.legacy'
+        compileSdk 33
+        }
+        
 dependencies{
         //required dependencies
         implementation'com.github.MakMoinee:library:Tag'
@@ -39,6 +44,7 @@ dependencies{
         implementation 'org.apache.httpcomponents:httpmime:4.5.13'
         implementation 'com.google.zxing:core:3.3.2'
         implementation 'com.google.zxing:javase:3.3.2'
+        implementation 'at.favre.lib:bcrypt:0.10.2'
 }
 ```
 
