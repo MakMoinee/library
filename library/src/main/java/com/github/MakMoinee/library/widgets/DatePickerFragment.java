@@ -14,6 +14,11 @@ public class DatePickerFragment extends DialogFragment {
 
     DatePickerDialog.OnDateSetListener listener;
     DatePickerDialog dialog;
+
+    public DatePickerFragment(DatePickerDialog.OnDateSetListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
