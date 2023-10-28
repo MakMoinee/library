@@ -49,4 +49,44 @@ public class LoginPref {
         editor.clear(); // Remove all stored preferences
         editor.apply();
     }
+
+    public String getStringItem(String fieldName) {
+        Object data = this.getItem(fieldName);
+        if (data instanceof Double) {
+            String result = (String) data;
+            return result;
+        }
+        return null;
+    }
+
+    public Float getFloatItem(String fieldName) {
+        Object data = this.getItem(fieldName);
+        if (data instanceof Double) {
+            Float result = (Float) data;
+            return result;
+        }
+        return null;
+    }
+
+    public Double getDoubleItem(String fieldName) {
+        Object data = this.getItem(fieldName);
+        if (data instanceof Double) {
+            Double result = (Double) data;
+            return result;
+        }
+        return null;
+    }
+
+    private Object getItem(String fieldName) {
+        Object data = null;
+
+        for (Map.Entry<String, Object> obj : this.getLogin().entrySet()) {
+            if (obj.getKey().equals(fieldName)) {
+                data = obj.getValue();
+                break;
+            }
+        }
+
+        return data;
+    }
 }
