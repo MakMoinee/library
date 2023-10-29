@@ -52,7 +52,7 @@ public class LoginPref {
 
     public String getStringItem(String fieldName) {
         Object data = this.getItem(fieldName);
-        if (data instanceof Double) {
+        if (data instanceof String) {
             String result = (String) data;
             return result;
         }
@@ -61,7 +61,7 @@ public class LoginPref {
 
     public Float getFloatItem(String fieldName) {
         Object data = this.getItem(fieldName);
-        if (data instanceof Double) {
+        if (data instanceof Float) {
             Float result = (Float) data;
             return result;
         }

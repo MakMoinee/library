@@ -35,7 +35,8 @@ public class GetMyProperty {
         InputStream inputStream = null;
         String result = "";
         try {
-            inputStream = mContext.getAssets().open(configFileName); Properties properties = GetMyProperty.getConfigProperties(inputStream);
+            inputStream = mContext.getAssets().open(configFileName);
+            Properties properties = GetMyProperty.getConfigProperties(inputStream);
             // Access specific properties
              result = properties.getProperty(fieldName);
         } catch (IOException e) {
