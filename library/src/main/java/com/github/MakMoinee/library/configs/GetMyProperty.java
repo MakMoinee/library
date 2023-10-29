@@ -1,5 +1,6 @@
 package com.github.MakMoinee.library.configs;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.io.IOException;
@@ -23,16 +24,25 @@ public class GetMyProperty {
         return properties;
     }
 
-
     /**
-     * @param fieldName - Name of the field you're trying to get the configuration
-     * @param inputStream - Create input stream to open the properties file (e.g: getAssets().open("local.properties");)
-     * @return String
+     *
+     * @param fieldName - Name of the field you're trying to get
+     * @param configFileName - Name of the config file (e.g: local.properties)
+     * @param mContext - Context (e.g: this, requireActivity() in fragment)
+     * @return
      */
-    public static String getStringConfig(String fieldName, InputStream inputStream) {
-        Properties properties = GetMyProperty.getConfigProperties(inputStream);
-        // Access specific properties
-        String result = properties.getProperty(fieldName);
+    public static String getStringConfig(String fieldName,String configFileName, Context mContext) {
+        InputStream inputStream = null;
+        String result = "";
+        try {
+            inputStream = mContext.getAssets().open(configFileName); Properties properties = GetMyProperty.getConfigProperties(inputStream);
+            // Access specific properties
+             result = properties.getProperty(fieldName);
+        } catch (IOException e) {
+            Log.e("getStringConfig_err", e.getLocalizedMessage());
+            result = "";
+        }
+
         return result;
     }
 }
