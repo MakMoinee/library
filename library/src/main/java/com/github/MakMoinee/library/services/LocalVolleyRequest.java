@@ -5,6 +5,7 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -62,7 +63,7 @@ public class LocalVolleyRequest {
         queue.add(arrayRequest);
     }
 
-    public void sendJSONPostGetRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
+    public void sendJSONPostRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, body.getUrl(), body.getBody(), response -> {
             if (response.length() > 0) {
                 listener.onSuccessJSON(response);
@@ -76,6 +77,36 @@ public class LocalVolleyRequest {
                 listener.onError(new Error("empty error, please check internet connectivity"));
             }
         });
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(objectRequest);
+    }
+
+    /***
+     *
+     * @param body - LocalVolleyRequestBody
+     * @param listener - Listener to listen for requests
+     * @param policy - RetryPolicy - Build your own custom retry policy
+     */
+    public void sendJSONPostRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener, RetryPolicy policy) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, body.getUrl(), body.getBody(), response -> {
+            if (response.length() > 0) {
+                listener.onSuccessJSON(response);
+            } else {
+                listener.onError(new Error("empty response"));
+            }
+        }, error -> {
+            try {
+                listener.onError(new Error(error.getLocalizedMessage()));
+            } catch (Exception e) {
+                listener.onError(new Error("empty error, please check internet connectivity"));
+            }
+        }){
+            @Override
+            public RetryPolicy getRetryPolicy() {
+                return policy;
+            }
+        };
 
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(objectRequest);
@@ -95,6 +126,30 @@ public class LocalVolleyRequest {
                 listener.onError(new Error("empty error, please check internet connectivity"));
             }
         });
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(objectRequest);
+    }
+
+    public void sendJSONPutRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener, RetryPolicy policy) {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.PUT, body.getUrl(), body.getBody(), response -> {
+            if (response.length() > 0) {
+                listener.onSuccessJSON(response);
+            } else {
+                listener.onError(new Error("empty response"));
+            }
+        }, error -> {
+            try {
+                listener.onError(new Error(error.getLocalizedMessage()));
+            } catch (Exception e) {
+                listener.onError(new Error("empty error, please check internet connectivity"));
+            }
+        }){
+            @Override
+            public RetryPolicy getRetryPolicy() {
+                return policy;
+            }
+        };
 
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(objectRequest);
