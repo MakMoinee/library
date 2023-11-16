@@ -21,4 +21,8 @@ public class Utils {
 
         return bitmap;
     }
+
+    public static boolean isAlphaNumeric(String s) {
+        return s.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$");
+    }
 }
