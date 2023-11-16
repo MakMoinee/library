@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
 }
-
+def useDefaultDependencies = true
 android {
     namespace 'com.github.MakMoinee.library'
     useLibrary 'org.apache.http.legacy'
@@ -60,17 +60,19 @@ android {
 
 dependencies {
 
-    implementation 'com.android.volley:volley:1.2.1'
+    if (useDefaultDependencies) {
+        implementation 'com.android.volley:volley:1.2.1'
+        implementation 'org.projectlombok:lombok:1.18.28'
+        annotationProcessor 'org.projectlombok:lombok:1.18.28'
+        testImplementation 'org.projectlombok:lombok:1.18.28'
+        androidTestImplementation 'org.projectlombok:lombok:1.18.28'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+        implementation 'org.apache.httpcomponents:httpmime:4.5.13'
+        implementation 'com.google.zxing:core:3.3.2'
+        implementation 'com.google.zxing:javase:3.3.2'
+        implementation 'at.favre.lib:bcrypt:0.10.2'
+    }
 
-    implementation 'org.projectlombok:lombok:1.18.28'
-    annotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testImplementation 'org.projectlombok:lombok:1.18.28'
-    androidTestImplementation 'org.projectlombok:lombok:1.18.28'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
-    implementation 'org.apache.httpcomponents:httpmime:4.5.13'
-    implementation 'com.google.zxing:core:3.3.2'
-    implementation 'com.google.zxing:javase:3.3.2'
-    implementation 'at.favre.lib:bcrypt:0.10.2'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
