@@ -68,6 +68,14 @@ public class LoginPref {
         return null;
     }
 
+    public int getIntItem(String fieldName) {
+        Object data = this.getItem(fieldName);
+        if (data instanceof Integer) {
+            return ((Integer) data).intValue();
+        }
+        return 0;
+    }
+
     public Double getDoubleItem(String fieldName) {
         Object data = this.getItem(fieldName);
         if (data instanceof Double) {
