@@ -156,7 +156,7 @@ public class FirestoreRequest {
      * @param listener - Returns null on listener.onSuccess() if success,
      *                 otherwise it will return listener.onError(error) passing the error
      */
-    private void delete(FirestoreRequestBody body, FirestoreListener listener) {
+    public void delete(FirestoreRequestBody body, FirestoreListener listener) {
         //check for required fields
         if (body.getCollectionName() == null) {
             listener.onError(new Error("collection name is required"));
