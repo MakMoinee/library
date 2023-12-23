@@ -43,6 +43,31 @@ public class LocalVolleyRequest {
         queue.add(jsonObjectRequest);
     }
 
+    public void sendJSONGetRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener, RetryPolicy policy) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, body.getUrl(), null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                listener.onSuccessJSON(response);
+            }
+        }, error -> {
+            try {
+                if (error != null) {
+                    listener.onError(new Error(error.getLocalizedMessage()));
+                }
+            } catch (Exception e) {
+                listener.onError(new Error("unknown error"));
+            }
+        }) {
+            @Override
+            public RetryPolicy getRetryPolicy() {
+                return policy;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(jsonObjectRequest);
+    }
+
     public void sendJSONArrayGetRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, body.getUrl(), null, new Response.Listener<JSONArray>() {
             @Override
@@ -101,7 +126,7 @@ public class LocalVolleyRequest {
             } catch (Exception e) {
                 listener.onError(new Error("empty error, please check internet connectivity"));
             }
-        }){
+        }) {
             @Override
             public RetryPolicy getRetryPolicy() {
                 return policy;
@@ -144,7 +169,7 @@ public class LocalVolleyRequest {
             } catch (Exception e) {
                 listener.onError(new Error("empty error, please check internet connectivity"));
             }
-        }){
+        }) {
             @Override
             public RetryPolicy getRetryPolicy() {
                 return policy;
