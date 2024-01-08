@@ -56,8 +56,8 @@ dependencies{
 - [FirestoreRequestBodyBuilder](/#FirestoreRequestBodyBuilder)
 - [MapForm](/#MapForm)
 - [FirestoreListener](/#FirestoreListener)
-- [HashPass](/#HashPass)
-- [LoginPref](/#LoginPref)
+- [HashPass](/#hashpass-encrypt-and-verify-password)
+- [LoginPref](/#loginpref-on-the-go-sharedpreference)
 
 ## FirestoreRequest
 - [findAll()](/#FindAll)
