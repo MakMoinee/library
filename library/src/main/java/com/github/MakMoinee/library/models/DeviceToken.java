@@ -1,11 +1,14 @@
 package com.github.MakMoinee.library.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceToken {
     private String docID;
-    private  String userID;
+    private String userID;
     private String deviceToken;
 
     public DeviceToken() {
@@ -20,7 +23,7 @@ public class DeviceToken {
     public static class DeviceTokenBuilder {
         private String docID;
         private String deviceToken;
-        private  String userID;
+        private String userID;
 
         public DeviceTokenBuilder() {
         }
