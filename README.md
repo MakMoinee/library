@@ -119,4 +119,35 @@ FirestoreListener listener = new FirestoreListener(){
 };
 ```
 
+## HashPass (Encrypt and Verify Password)
+```java
+
+// Encrypt password
+String hashPass = new HashPass().makeHashPassword(password);
+
+// Verify password 
+boolean isEqualPassword = hashPass.verifyPassword(stringPassword, hashPassword);
+
+```
+
+## LoginPref (On the go sharedpreference)
+```java
+
+    new LoginPref(context).storeLogin(dataModel);
+
+    // another example
+    Users users = new Users();
+    new LoginPref(context).storeLogin(users);
+
+    // clear data in sharedpreference
+    new LoginPref(context).clearLogin();
+
+
+    // add your own methods by extending LoginPref
+    public class UserPref extends LoginPref{
+        // add more methods
+    }
+
+```
+
 
