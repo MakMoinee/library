@@ -56,6 +56,8 @@ dependencies{
 - [FirestoreRequestBodyBuilder](/#FirestoreRequestBodyBuilder)
 - [MapForm](/#MapForm)
 - [FirestoreListener](/#FirestoreListener)
+- [HashPass](/#HashPass)
+- [LoginPref](/#LoginPref)
 
 ## FirestoreRequest
 - [findAll()](/#FindAll)
