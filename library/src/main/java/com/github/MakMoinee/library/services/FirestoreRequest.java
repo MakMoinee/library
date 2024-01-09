@@ -116,6 +116,27 @@ public class FirestoreRequest {
     }
 
     /**
+     *
+     * @param body
+     * @param listener
+     */
+    public void insertOnly(FirestoreRequestBody body, FirestoreListener listener) {
+        String id = fs.collection(body.getCollectionName())
+                .document().getId();
+        fs.collection(body.getCollectionName())
+                .document(id)
+                .set(body.getParams())
+                .addOnSuccessListener(unused -> listener.onSuccess(id))
+                .addOnFailureListener(e -> {
+                    try {
+                        listener.onError(new Error(e.getMessage()));
+                    } catch (Exception e1) {
+                        listener.onError(null);
+                    }
+                });
+    }
+
+    /**
      * @param body     - build your FirebaseRequestBody
      * @param listener - Returns null on listener.onSuccess() if success,
      *                 otherwise it will return listener.onError(error) passing the error
