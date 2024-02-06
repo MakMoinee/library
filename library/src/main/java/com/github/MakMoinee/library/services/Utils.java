@@ -37,10 +37,10 @@ public class Utils {
         }
 
         // Define the format pattern for date and time in 12-hour format with AM/PM
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat();
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat(pattern);
 
         // Format the date and time
-        String formattedDateTime = dateTimeFormat.format(pattern);
+        String formattedDateTime = dateTimeFormat.format(dateTimeFormat);
 
         return formattedDateTime;
     }
