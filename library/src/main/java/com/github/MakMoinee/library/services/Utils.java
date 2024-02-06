@@ -40,7 +40,7 @@ public class Utils {
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat(pattern);
 
         // Format the date and time
-        String formattedDateTime = dateTimeFormat.format(dateTimeFormat);
+        String formattedDateTime = dateTimeFormat.format(currentDateTime);
 
         return formattedDateTime;
     }
