@@ -5,8 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Utils {
     public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -43,5 +48,28 @@ public class Utils {
         String formattedDateTime = dateTimeFormat.format(currentDateTime);
 
         return formattedDateTime;
+    }
+
+    /**
+     *
+     * @param title
+     * @param body
+     * @param token
+     */
+    public void sendMessage(String title, String body, String token){
+        // Obtain the FirebaseMessaging instance
+        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+
+        // Create a data payload for the FCM message
+        Map<String, String> data = new HashMap<>();
+        data.put("title", title);
+        data.put("body", body);
+
+        // Construct the FCM message
+        RemoteMessage.Builder messageBuilder = new RemoteMessage.Builder(token);
+        messageBuilder.setData(data);
+
+        // Send the FCM message
+        firebaseMessaging.send(messageBuilder.build());
     }
 }
