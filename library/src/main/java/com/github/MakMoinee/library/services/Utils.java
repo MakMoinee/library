@@ -56,7 +56,7 @@ public class Utils {
      * @param body
      * @param token
      */
-    public void sendMessage(String title, String body, String token){
+    public static void sendMessage(String title, String body, String token){
         // Obtain the FirebaseMessaging instance
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
 
