@@ -3,8 +3,10 @@ package com.github.MakMoinee.library.services;
 import com.github.MakMoinee.library.interfaces.FirestoreListener;
 import com.github.MakMoinee.library.models.FirestoreRequestBody;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 public class FirestoreRequest {
@@ -91,8 +93,31 @@ public class FirestoreRequest {
         this.findAll(body, new FirestoreListener() {
             @Override
             public <T> void onSuccess(T any) {
-                //existent data
-                listener.onError(new Error("data exist"));
+                if (any instanceof QuerySnapshot) {
+                    QuerySnapshot snapshots = (QuerySnapshot) any;
+                    if (snapshots.size() > 0) {
+                        //existent data
+                        listener.onError(new Error("data exist"));
+                    } else {
+                        String id = fs.collection(body.getCollectionName())
+                                .document().getId();
+                        fs.collection(body.getCollectionName())
+                                .document(id)
+                                .set(body.getParams())
+                                .addOnSuccessListener(unused -> listener.onSuccess(id))
+                                .addOnFailureListener(e -> {
+                                    try {
+                                        listener.onError(new Error(e.getMessage()));
+                                    } catch (Exception e1) {
+                                        listener.onError(null);
+                                    }
+                                });
+                    }
+                } else {
+                    //existent data
+                    listener.onError(new Error("data exist"));
+                }
+
             }
 
             @Override
@@ -116,7 +141,6 @@ public class FirestoreRequest {
     }
 
     /**
-     *
      * @param body
      * @param listener
      */
