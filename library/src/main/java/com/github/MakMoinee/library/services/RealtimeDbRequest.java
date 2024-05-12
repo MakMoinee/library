@@ -48,11 +48,15 @@ public class RealtimeDbRequest {
 
     public void insertOnly(RealtimeDBBody body, RealtimeDbListener listener) {
         String id = this.dbRef.child(body.getChildName()).push().getKey();
+        if (body.getKey() != null && !body.getKey().isEmpty()) {
+            id = body.getKey();
+        }
+        String finalId = id;
         this.dbRef.child(body.getChildName()).child(id).setValue(body.getParams(), (error, ref) -> {
             if (error != null) {
                 listener.onError(new Error(error.getMessage()));
             } else {
-                listener.onSuccess(id);
+                listener.onSuccess(finalId);
             }
         });
     }
