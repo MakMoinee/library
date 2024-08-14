@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import com.github.MakMoinee.library.models.FirestoreRequestBody;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -37,7 +38,7 @@ public class Utils {
     public static String getCurrentDate(String pattern) {
         Date currentDateTime = new Date();
 
-        if(pattern.isEmpty()){
+        if (pattern.isEmpty()) {
             pattern = "yyyy-MM-dd hh:mm a";
         }
 
@@ -51,12 +52,11 @@ public class Utils {
     }
 
     /**
-     *
      * @param title
      * @param body
      * @param token
      */
-    public static void sendMessage(String title, String body, String token){
+    public static void sendMessage(String title, String body, String token) {
         // Obtain the FirebaseMessaging instance
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
 
@@ -71,5 +71,12 @@ public class Utils {
 
         // Send the FCM message
         firebaseMessaging.send(messageBuilder.build());
+    }
+
+    public static FirestoreRequestBody createBody(Map<String, Object> data) {
+        FirestoreRequestBody body = new FirestoreRequestBody.FirestoreRequestBodyBuilder()
+                .setParams(data)
+                .build();
+        return body;
     }
 }
