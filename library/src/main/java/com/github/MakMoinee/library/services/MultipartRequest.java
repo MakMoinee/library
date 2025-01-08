@@ -7,11 +7,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.ByteArrayBody;
-import org.apache.http.entity.mime.content.StringBody;
+
+import org.apache.hc.client5.http.entity.mime.ByteArrayBody;
+import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
+import org.apache.hc.client5.http.entity.mime.StringBody;
+import org.apache.hc.client5.http.entity.mime.HttpMultipartMode;
+import org.apache.hc.core5.http.ContentType;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class MultipartRequest extends Request<String> {
             // Create multipart entity builder with the boundary and mode
             MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
             entityBuilder.setBoundary(mBoundary);
-            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+            entityBuilder.setMode(HttpMultipartMode.EXTENDED);
 
             // Add string params to the builder
             for (Map.Entry<String, Object> entry : mParams.entrySet()) {
