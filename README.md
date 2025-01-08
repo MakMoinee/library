@@ -1,6 +1,6 @@
 # library
 
-[![](https://jitpack.io/v/MakMoinee/library.svg)](https://jitpack.io/#MakMoinee/library)
+[![](library.svg)](https://jitpack.io/#MakMoinee/library)
 
 ## Installation
 
