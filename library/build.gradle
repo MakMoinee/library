@@ -46,6 +46,13 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/mimetypes.default'
+    }
+
+    packaging {
+        dex {
+            useLegacyPackaging = false
+        }
     }
 
 
@@ -76,7 +83,8 @@ dependencies {
         implementation 'com.google.firebase:firebase-database'
         implementation 'com.google.firebase:firebase-messaging'
         implementation 'com.sun.mail:jakarta.mail:2.0.1'
-        implementation 'jakarta.activation:jakarta.activation-api:2.1.3'
+        implementation "androidx.sqlite:sqlite:2.4.0"
+        implementation "androidx.sqlite:sqlite-framework:2.4.0"
     }
 
 
@@ -96,7 +104,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.2-rc1'
+                version '1.0.2-rc2'
 
                 artifact bundleReleaseAar
             }

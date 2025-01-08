@@ -47,7 +47,8 @@ dependencies{
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
-    implementation 'jakarta.activation:jakarta.activation-api:2.1.3'
+    implementation "androidx.sqlite:sqlite:2.4.0"
+    implementation "androidx.sqlite:sqlite-framework:2.4.0"
 }
 ```
 
