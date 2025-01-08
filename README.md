@@ -27,24 +27,27 @@ dependencyResolutionManagement{
 ```java
 android {
         useLibrary 'org.apache.http.legacy'
-        compileSdk 33
+        compileSdk 34
         }
         
 dependencies{
         //required dependencies
-        implementation'com.github.MakMoinee:library:Tag'
-        implementation 'com.android.volley:volley:1.2.1'
-        implementation platform('com.google.firebase:firebase-bom:32.1.0')
-        implementation 'com.google.firebase:firebase-firestore'
-        implementation 'org.projectlombok:lombok:1.18.28'
-        annotationProcessor 'org.projectlombok:lombok:1.18.28'
-        testImplementation 'org.projectlombok:lombok:1.18.28'
-        androidTestImplementation 'org.projectlombok:lombok:1.18.28'
-        implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
-        implementation 'org.apache.httpcomponents:httpmime:4.5.13'
-        implementation 'com.google.zxing:core:3.3.2'
-        implementation 'com.google.zxing:javase:3.3.2'
-        implementation 'at.favre.lib:bcrypt:0.10.2'
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    testImplementation 'org.projectlombok:lombok:1.18.36'
+    androidTestImplementation 'org.projectlombok:lombok:1.18.36'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.4.1'
+    implementation 'com.google.zxing:core:3.3.2'
+    implementation 'com.google.zxing:javase:3.3.2'
+    implementation 'at.favre.lib:bcrypt:0.10.2'
+    implementation platform('com.google.firebase:firebase-bom:32.5.0')
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+    implementation 'jakarta.activation:jakarta.activation-api:2.1.3'
 }
 ```
 
