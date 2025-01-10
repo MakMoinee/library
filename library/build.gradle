@@ -87,7 +87,8 @@ dependencies {
         implementation "androidx.sqlite:sqlite-framework:2.4.0"
     }
 
-
+    implementation "androidx.navigation:navigation-fragment:2.6.0"
+    implementation "androidx.navigation:navigation-ui:2.6.0"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     testImplementation 'junit:junit:4.13.2'
@@ -104,7 +105,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.2-rc6'
+                version '1.0.2-rc7'
 
                 artifact bundleReleaseAar
             }

@@ -1,5 +1,6 @@
 package com.github.MakMoinee.library.services;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
@@ -10,6 +11,11 @@ import com.github.MakMoinee.library.models.FirestoreRequestBody;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,5 +94,10 @@ public class Utils {
      */
     public static View getNavView(NavigationView navView) {
         return navView.getHeaderView(0);
+    }
+
+    public static void setUpNavigation(Activity activity, NavigationView navView, NavController navController, AppBarConfiguration mAppBarConfiguration) {
+        NavigationUI.setupActionBarWithNavController((AppCompatActivity) activity, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 }
