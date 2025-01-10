@@ -104,7 +104,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.2-rc5'
+                version '1.0.2-rc6'
 
                 artifact bundleReleaseAar
             }

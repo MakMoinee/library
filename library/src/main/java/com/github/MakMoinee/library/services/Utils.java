@@ -4,8 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import com.github.MakMoinee.library.models.FirestoreRequestBody;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -78,5 +80,13 @@ public class Utils {
                 .setParams(data)
                 .build();
         return body;
+    }
+
+    /**
+     * @param navView
+     * @return view used for accessing inner views like textView, editText and many more
+     */
+    public static View getNavView(NavigationView navView) {
+        return navView.getHeaderView(0);
     }
 }
