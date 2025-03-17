@@ -17,9 +17,10 @@ public class LocalAndroidServer extends NanoHTTPD {
 
     DefaultBaseListener listener;
 
-    public LocalAndroidServer(int port, DefaultBaseListener l) {
+    public LocalAndroidServer(int port, DefaultBaseListener l) throws IOException {
         super(port);
         this.listener = l;
+        start();
     }
 
     @Override
