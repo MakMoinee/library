@@ -49,7 +49,10 @@ dependencies{
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
     implementation "androidx.sqlite:sqlite:2.4.0"
     implementation "androidx.sqlite:sqlite-framework:2.4.0"
-}
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+            
+    implementation 'com.github.MakMoinee:library:$releaseVersion'
+ }
 ```
 
 

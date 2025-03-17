@@ -12,7 +12,7 @@ android {
         minSdk 24
         targetSdk 34
         versionCode 1
-        versionName "1.0.2-rc7"
+        versionName "1.0.2-rc8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +51,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:2.6.0"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation project(path: ':library')
     testImplementation 'junit:junit:4.13.2'
