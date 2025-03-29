@@ -9,6 +9,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.MakMoinee.library.interfaces.LocalVolleyRequestListener;
 import com.github.MakMoinee.library.models.LocalVolleyRequestBody;
@@ -200,6 +201,24 @@ public class LocalVolleyRequest {
         // Create a RequestQueue and add the multipart request to it
         RequestQueue queue = Volley.newRequestQueue(mContext);
         queue.add(multipartRequest);
+    }
+
+
+    public void sendTextPlainRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
+        StringRequest request = new StringRequest(Request.Method.GET, body.getUrl(), listener::onSuccessString, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onError(new Error(error.getLocalizedMessage()));
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "text/plain";
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue.add(request);
     }
 
 }
