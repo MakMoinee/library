@@ -10,13 +10,13 @@
 
   <g mask="url(#round)">
     <rect width="48" height="20" fill="#555"/>
-    <rect x="48" width="46" height="20" fill="#4c1"/>
+    <rect x="48" width="48" height="20" fill="#4c1"/>
     <rect width="94" height="20" fill="url(#smooth)"/>
   </g>
 
-  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="8.5">
-    <text x="25" y="15" fill="#010101" fill-opacity=".3">JitPack</text>
-    <text x="25" y="14">JitPack</text>
+  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="8">
+    <text x="23" y="13" fill="#010101" fill-opacity=".3">JitPack</text>
+    <text x="23" y="13">JitPack</text>
     <text x="67" y="15" fill="#010101" fill-opacity=".3"> 1.0.2-rc16</text>
     <text x="67" y="14"> 1.0.2-rc16</text>
   </g>
