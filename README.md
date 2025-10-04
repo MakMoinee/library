@@ -1,6 +1,8 @@
 # library
 
 [![](library.svg)](https://jitpack.io/#MakMoinee/library)
+![Weekly download statistics](https://jitpack.io/v/USER/REPO/week.svg)
+![Monthly download statistics](https://jitpack.io/v/USER/REPO/month.svg)
 
 ## Installation
 
