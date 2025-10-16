@@ -19,9 +19,27 @@ import org.json.JSONObject;
 
 public class LocalVolleyRequest {
     Context mContext;
+    Boolean useSingleton = false;
 
     public LocalVolleyRequest(Context mContext) {
+        useSingleton = false;
         this.mContext = mContext;
+    }
+
+    public LocalVolleyRequest(Context mContext, Boolean isSingle) {
+        this.mContext = mContext;
+        useSingleton = true;
+    }
+
+    private RequestQueue setRequestQue(Context mContext) {
+        RequestQueue resultQueue = null;
+        if (useSingleton) {
+           resultQueue =  SingletonRequestQue.getInstance(mContext).getRequestQueue();
+        } else {
+            resultQueue = Volley.newRequestQueue(mContext);
+        }
+
+        return resultQueue;
     }
 
     public void sendJSONGetRequest(LocalVolleyRequestBody body, LocalVolleyRequestListener listener) {
@@ -40,7 +58,7 @@ public class LocalVolleyRequest {
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(jsonObjectRequest);
     }
 
@@ -65,7 +83,7 @@ public class LocalVolleyRequest {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(jsonObjectRequest);
     }
 
@@ -85,7 +103,7 @@ public class LocalVolleyRequest {
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(arrayRequest);
     }
 
@@ -104,7 +122,7 @@ public class LocalVolleyRequest {
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(objectRequest);
     }
 
@@ -134,7 +152,7 @@ public class LocalVolleyRequest {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(objectRequest);
     }
 
@@ -153,7 +171,7 @@ public class LocalVolleyRequest {
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(objectRequest);
     }
 
@@ -177,7 +195,7 @@ public class LocalVolleyRequest {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(objectRequest);
     }
 
@@ -199,7 +217,7 @@ public class LocalVolleyRequest {
         });
 
         // Create a RequestQueue and add the multipart request to it
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(multipartRequest);
     }
 
@@ -217,7 +235,7 @@ public class LocalVolleyRequest {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        RequestQueue queue = this.setRequestQue(mContext);
         queue.add(request);
     }
 
