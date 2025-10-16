@@ -10,7 +10,7 @@ public class CustomErrors {
         }
 
         if (any instanceof Exception e) {
-            Log.e("CustomErrors", e.getMessage());
+            Log.e("CustomErrors", e.getLocalizedMessage());
         } else if (any instanceof String s) {
             Log.e("CustomErrors", s);
         } else {
