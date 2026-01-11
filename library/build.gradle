@@ -6,7 +6,7 @@ def useDefaultDependencies = true
 android {
     namespace 'com.github.MakMoinee.library'
     useLibrary 'org.apache.http.legacy'
-    compileSdk 35
+    compileSdk 36
 
     lint {
         baseline = file("lint-baseline.xml")
@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         minSdk 24
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -106,7 +106,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.2-rc19'
+                version '1.0.2-rc20'
 
                 artifact bundleReleaseAar
             }

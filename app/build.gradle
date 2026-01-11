@@ -5,14 +5,14 @@ plugins {
 android {
     namespace 'com.github.MakMoinee.library'
     useLibrary 'org.apache.http.legacy'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.github.MakMoinee.library"
         minSdk 24
-        targetSdk 35
+        targetSdk 36
         versionCode 1
-        versionName "1.0.2-rc19"
+        versionName "1.0.2-rc20"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
