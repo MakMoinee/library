@@ -97,4 +97,9 @@ public class DirectionalPadView extends View {
 
         return true;
     }
+
+    public void setPadColor(int color) {
+        paint.setColor(color);
+        invalidate();
+    }
 }

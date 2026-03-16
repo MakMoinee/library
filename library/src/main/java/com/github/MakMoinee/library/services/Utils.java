@@ -134,4 +134,31 @@ public class Utils {
         }
     }
 
+    public static class HashMapBuilder {
+        private String key;
+        private String value;
+        private Map<String, Object> localMap;
+
+
+        public HashMapBuilder setKey(String key) {
+            this.key = key;
+            return this;
+        }
+
+        public HashMapBuilder setValue(String value) {
+            this.value = value;
+            return this;
+        }
+
+        public HashMapBuilder setLocalMap(Map<String, Object> localMap) {
+            this.localMap = localMap;
+            return this;
+        }
+
+        public Map<String, Object> getMap() {
+            localMap.put(this.key, this.value);
+            return localMap;
+        }
+    }
+
 }
