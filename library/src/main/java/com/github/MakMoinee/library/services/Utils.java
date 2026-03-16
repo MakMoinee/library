@@ -137,7 +137,7 @@ public class Utils {
     public static class HashMapBuilder {
         private String key;
         private String value;
-        private Map<String, Object> localMap;
+        private Map<String, Object> localMap = new HashMap<>();
 
 
         public HashMapBuilder setKey(String key) {
