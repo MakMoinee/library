@@ -69,10 +69,10 @@ dependencies {
 
     if (useDefaultDependencies) {
         implementation 'com.android.volley:volley:1.2.1'
-        implementation 'org.projectlombok:lombok:1.18.36'
-        annotationProcessor 'org.projectlombok:lombok:1.18.36'
-        testImplementation 'org.projectlombok:lombok:1.18.36'
-        androidTestImplementation 'org.projectlombok:lombok:1.18.36'
+        implementation 'org.projectlombok:lombok:1.18.48'
+        annotationProcessor 'org.projectlombok:lombok:1.18.48'
+        testImplementation 'org.projectlombok:lombok:1.18.48'
+        androidTestImplementation 'org.projectlombok:lombok:1.18.48'
         implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
         implementation 'org.apache.httpcomponents.client5:httpclient5:5.4.1'
         implementation 'com.google.zxing:core:3.3.2'
@@ -106,7 +106,7 @@ project.afterEvaluate {
             aar(MavenPublication) {
                 groupId 'com.github.MakMoinee'
                 artifactId 'library'
-                version '1.0.2-rc24'
+                version '1.0.3'
 
                 artifact bundleReleaseAar
             }
